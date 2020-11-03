@@ -1,0 +1,46 @@
+<resources>
+
+    <style name="Animation_Bottom_Dialog">
+        <item name="android:windowEnterAnimation">@anim/bottom_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/bottom_dialog_exit</item>
+    </style>
+
+    <style name="LoadingDialog">
+        <item name="android:windowEnterAnimation">@anim/bottom_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/alpha_out</item>
+    </style>
+
+    <declare-styleable name="CornerText">
+        <attr name="ctRadius" format="dimension" />
+        <attr name="ctStroke" format="boolean" />
+        <attr name="ctRadiusTopLeft" format="dimension" />
+        <attr name="ctRadiusTopRight" format="dimension" />
+        <attr name="ctRadiusBottomLeft" format="dimension" />
+        <attr name="ctRadiusBottomRight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CornerLayout">
+        <attr name="clRadius" format="dimension" />
+        <attr name="clStroke" format="boolean" />
+        <attr name="clRadiusTopLeft" format="dimension" />
+        <attr name="clRadiusTopRight" format="dimension" />
+        <attr name="clRadiusBottomLeft" format="dimension" />
+        <attr name="clRadiusBottomRight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="StrokeTextButton">
+        <attr name="stbRadius" format="dimension" />
+        <attr name="stbStrokeWidth" format="dimension" />
+        <attr name="stbColor" format="color" />
+        <attr name="stbRadiusTopLeft" format="dimension" />
+        <attr name="stbRadiusTopRight" format="dimension" />
+        <attr name="stbRadiusBottomLeft" format="dimension" />
+        <attr name="stbRadiusBottomRight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="LimitLinearLayout">
+        <attr name="lllMaxHeight" format="dimension" />
+    </declare-styleable>
+
+
+</resources>

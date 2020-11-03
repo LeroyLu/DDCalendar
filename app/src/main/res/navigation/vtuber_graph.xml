@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vtuber_graph"
+    app:startDestination="@id/fallowFragment">
+
+    <fragment
+        android:id="@+id/fallowFragment"
+        android:name="com.leroylu.calendar.ui.fragment.FallowFragment"
+        android:label="fragment_fallow"
+        tools:layout="@layout/fragment_fallow">
+        <action
+            android:id="@+id/addFallowing"
+            app:destination="@id/fallowingAddFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/fallowingAddFragment"
+        android:name="com.leroylu.calendar.ui.fragment.FallowingAddFragment"
+        android:label="FallowingAddFragment"
+        tools:layout="@layout/fragment_fallow_add" />
+</navigation>

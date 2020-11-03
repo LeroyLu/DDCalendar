@@ -1,0 +1,4 @@
+include ':db_library'
+include ':struct_library'
+include ':app'
+rootProject.name = "demo"

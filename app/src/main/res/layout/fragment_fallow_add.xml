@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.leroylu.calendar.model.FallowingAddViewModel" />
+
+        <variable
+            name="operation"
+            type="com.leroylu.calendar.ui.fragment.FallowingAddFragment.Operation" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.leroylu.calendar.ui.widget.CustomToolBar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ctbBackground="@color/Pink300"
+            app:ctbTitle="添加关注" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/icon"
+                style="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/user"
+                android:backgroundTint="@color/Grey500"
+                android:onClick="@{()->operation.setFallowingIcon()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nameField"
+                style="@style/TextInputLayout"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/icon">
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="名字"
+                    android:singleLine="true"
+                    android:text="@={vm.name}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/descriptionField"
+                style="@style/TextInputLayout"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nameField">
+
+                <EditText
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="签名"
+                    android:singleLine="true"
+                    android:text="@={vm.description}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/streamField"
+                style="@style/TextInputLayout"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descriptionField">
+
+                <EditText
+                    android:id="@+id/stream"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="直播间ID"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:text="@={vm.stream}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/commit"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/Pink300"
+                android:gravity="center"
+                android:onClick="@{()->operation.fallow()}"
+                android:text="关注"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</layout>

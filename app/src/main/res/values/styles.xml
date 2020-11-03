@@ -1,0 +1,39 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="CalendarTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/Pink300</item>
+        <item name="colorPrimaryDark">@color/Pink300</item>
+        <item name="colorAccent">@color/Pink400</item>
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+
+    <style name="Animation_Bottom_Dialog">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <declare-styleable name="CustomToolBar">
+        <attr name="ctbBackground" format="color" />
+        <attr name="ctbTitle" format="string" />
+        <attr name="ctbTitleColor" format="color" />
+        <attr name="ctbTitleSize" format="dimension" />
+        <attr name="ctbActionIcon" format="reference" />
+    </declare-styleable>
+
+    <style name="CalendarTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="CalendarTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="CalendarTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

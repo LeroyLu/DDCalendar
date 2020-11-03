@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/calendar_graph"
+    app:startDestination="@id/calendarFragment">
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.leroylu.calendar.ui.fragment.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar">
+        <action
+            android:id="@+id/goToAddSchedule"
+            app:destination="@id/scheduleAddFragment"
+            app:enterAnim="@anim/alpha_in"
+            app:exitAnim="@anim/alpha_out"
+            app:popEnterAnim="@anim/alpha_in"
+            app:popExitAnim="@anim/alpha_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/scheduleAddFragment"
+        android:name="com.leroylu.calendar.ui.fragment.ScheduleAddFragment"
+        android:label="fragment_schedule_add"
+        tools:layout="@layout/fragment_schedule_add" />
+
+</navigation>
