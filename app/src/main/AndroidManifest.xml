@@ -8,6 +8,7 @@
 
     <application
         android:name=".App"
+        android:icon="@drawable/app_icon"
         android:allowBackup="true"
         android:label="DD Calendar"
         android:supportsRtl="true"

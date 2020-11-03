@@ -14,16 +14,21 @@
             android:id="@+id/progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:indeterminateTint="@color/Pink300"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <TextView
             android:id="@+id/btn"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="retry"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/Pink300"
+            android:gravity="center"
+            android:text="重试"
+            android:textColor="@color/white"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

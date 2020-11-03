@@ -50,9 +50,7 @@ class FallowFragment : BaseFragment<FragmentFallowBinding>() {
                     }
                 }
                 withLoadStateFooter(
-                    LoadingStateAdapter(
-                        this
-                    )
+                    LoadingStateAdapter(this)
                 )
             }
 

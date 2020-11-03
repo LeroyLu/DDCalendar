@@ -19,7 +19,7 @@ class ScheduleAddViewModel : ViewModel() {
 
     val id = MutableLiveData<Int>()
     val vtuber = MutableLiveData<Vtuber>()
-    val isLimited = MutableLiveData<Boolean>(false)
+    val isLimited = MutableLiveData<Boolean>(true)
     val info = MutableLiveData<String>("")
     private val dateAndTime = Calendar.getInstance()
 

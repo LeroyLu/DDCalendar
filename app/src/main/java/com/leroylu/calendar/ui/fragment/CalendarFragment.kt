@@ -15,6 +15,7 @@ import com.leroylu.calendar.model.ScheduleViewModel
 import com.leroylu.calendar.ui.adapter.CalendarDayAdapter
 import com.leroylu.db.bean.calendar.CalendarItem
 import com.leroylu.struct.ui.BaseFragment
+import com.leroylu.struct.util.ToastUtil
 import java.util.*
 
 
@@ -26,14 +27,17 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>() {
         onDelete = { delete(it) },
         onBrowse = { it ->
             val id = it.vtuber.streamRoomId
-            if (id.isBlank()) return@CalendarDayAdapter
+            if (id.isBlank()) {
+                ToastUtil.show("未设置房间号")
+                return@CalendarDayAdapter
+            }
             try {
                 val intent = Intent()
                 intent.action = "android.intent.action.VIEW"
                 intent.data = Uri.parse("bilibili://live/${id}")
                 startActivity(intent)
             } catch (ignore: Exception) {
-
+                ToastUtil.show("未安装bilibili或房间号错误")
             }
         }
     )
@@ -101,11 +105,10 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>() {
     }
 
     private fun edit(item: CalendarItem) {
-        val data = Bundle().apply {
+        findNavController().navigate(R.id.goToAddSchedule, Bundle().apply {
             putSerializable("mode", ScheduleAddFragment.Mode.Modify)
             putString("data", Gson().toJson(item))
-        }
-        findNavController().navigate(R.id.goToAddSchedule, data)
+        })
     }
 
     private fun delete(item: CalendarItem) {

@@ -70,7 +70,7 @@ class CalendarDayAdapter(
                 it.time.text = timeS
                 it.description.text = item.info
                 it.type.isVisible = item.limited
-                it.browse.setOnClickListener { onBrowse?.invoke(item) }
+                it.icon.setOnClickListener { onBrowse?.invoke(item) }
                 it.edit.setOnClickListener { onEdit?.invoke(item) }
                 it.del.setOnClickListener { onDelete?.invoke(item) }
             }
