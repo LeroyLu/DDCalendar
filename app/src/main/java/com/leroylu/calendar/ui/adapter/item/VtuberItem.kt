@@ -19,6 +19,7 @@ class VtuberItem(
     var onSelect: ((Vtuber) -> Unit)? = null
     var onEdit: ((Vtuber) -> Unit)? = null
     var onDelete: ((Vtuber) -> Unit)? = null
+    var onBrowse: ((Vtuber) -> Unit)? = null
 
     override fun areItemsTheSame(data: Vtuber): Boolean {
         return self.vid == data.vid
@@ -49,4 +50,7 @@ class VtuberItem(
         onDelete?.invoke(self)
     }
 
+    fun onBrowseCallback() {
+        onBrowse?.invoke(self)
+    }
 }

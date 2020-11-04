@@ -80,6 +80,9 @@ dependencies {
     api 'androidx.room:room-runtime:2.2.5'
     kapt 'androidx.room:room-compiler:2.2.5'
 
+    //WorkManager
+    api "androidx.work:work-runtime-ktx:2.4.0"
+
     //ARouter
     api 'com.alibaba:arouter-api:1.5.0'
 

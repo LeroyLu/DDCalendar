@@ -21,5 +21,6 @@ data class CalendarItem(
     var day: Int,
     var hour: Int,
     var minute: Int,
-    var info: String
+    var info: String,
+    var notifyRequestId: String
 )

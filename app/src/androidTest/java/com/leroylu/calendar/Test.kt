@@ -24,7 +24,7 @@ class Test {
             it.tag?.contains(257898) ?: false
         }.map {
             Vtuber(
-                vid = it.mid,
+                uid = it.mid.toString(),
                 icon = it.face,
                 name = it.uname,
                 description = it.sign,

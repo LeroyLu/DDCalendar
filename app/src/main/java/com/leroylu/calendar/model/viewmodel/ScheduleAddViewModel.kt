@@ -1,8 +1,10 @@
-package com.leroylu.calendar.model
+package com.leroylu.calendar.model.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import com.leroylu.calendar.model.PushModel
 import com.leroylu.calendar.repository.ScheduleDataSource
 import com.leroylu.db.bean.calendar.CalendarItem
 import com.leroylu.db.bean.calendar.Vtuber
@@ -21,9 +23,11 @@ class ScheduleAddViewModel : ViewModel() {
     val vtuber = MutableLiveData<Vtuber>()
     val isLimited = MutableLiveData<Boolean>(true)
     val info = MutableLiveData<String>("")
+    val pushId = MutableLiveData<String>()
     private val dateAndTime = Calendar.getInstance()
 
     private val scheduleDataSource: ScheduleDataSource by lazy { ScheduleDataSource() }
+    lateinit var pushModel: PushModel
 
     fun updateDate(year: Int, month: Int, day: Int) {
         dateAndTime.set(Calendar.YEAR, year)
@@ -53,8 +57,18 @@ class ScheduleAddViewModel : ViewModel() {
             day = dateAndTime.get(Calendar.DAY_OF_MONTH),
             hour = dateAndTime.get(Calendar.HOUR_OF_DAY),
             minute = dateAndTime.get(Calendar.MINUTE),
-            info = info.value ?: ""
+            info = info.value ?: "",
+            notifyRequestId = pushId.value ?: ""
         )
+
+        val gson = Gson()
+        if (item.notifyRequestId.isNotBlank()) {
+            pushModel.cancelRequest(gson.fromJson(item.notifyRequestId, UUID::class.java))
+        }
+        val request = pushModel.build(item).apply {
+            item.notifyRequestId = gson.toJson(id)
+        }
+        pushModel.sendRequest(request)
 
         viewModelScope.launch {
             if (item.id == 0) {

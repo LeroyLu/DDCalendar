@@ -14,6 +14,7 @@ data class Vtuber(
     var vid: Int = 0,
     var icon: String,
     var name: String,
+    var uid: String,
     var streamRoomId: String,
     var description: String
 )

@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.leroylu.calendar.model.ScheduleAddViewModel" />
+            type="com.leroylu.calendar.model.viewmodel.ScheduleAddViewModel" />
 
         <variable
             name="operation"

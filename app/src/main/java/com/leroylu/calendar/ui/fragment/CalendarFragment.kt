@@ -1,7 +1,5 @@
 package com.leroylu.calendar.ui.fragment
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.CalendarView
 import androidx.lifecycle.observe
@@ -11,11 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.leroylu.calendar.R
 import com.leroylu.calendar.databinding.FragmentCalendarBinding
-import com.leroylu.calendar.model.ScheduleViewModel
+import com.leroylu.calendar.model.BilibiliJumpModel
+import com.leroylu.calendar.model.PushModel
+import com.leroylu.calendar.model.viewmodel.ScheduleViewModel
 import com.leroylu.calendar.ui.adapter.CalendarDayAdapter
 import com.leroylu.db.bean.calendar.CalendarItem
 import com.leroylu.struct.ui.BaseFragment
-import com.leroylu.struct.util.ToastUtil
 import java.util.*
 
 
@@ -25,21 +24,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>() {
     private val adapter = CalendarDayAdapter(
         onEdit = { edit(it) },
         onDelete = { delete(it) },
-        onBrowse = { it ->
-            val id = it.vtuber.streamRoomId
-            if (id.isBlank()) {
-                ToastUtil.show("未设置房间号")
-                return@CalendarDayAdapter
-            }
-            try {
-                val intent = Intent()
-                intent.action = "android.intent.action.VIEW"
-                intent.data = Uri.parse("bilibili://live/${id}")
-                startActivity(intent)
-            } catch (ignore: Exception) {
-                ToastUtil.show("未安装bilibili或房间号错误")
-            }
-        }
+        onBrowse = { scheduleViewModel.jumpModel.getLivePendingIntent(it.vtuber) }
     )
 
     override fun getLayoutId(): Int {
@@ -51,7 +36,10 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>() {
     }
 
     override fun initViewModel() {
-        scheduleViewModel = getActivityViewModel(ScheduleViewModel::class.java)
+        scheduleViewModel = getActivityViewModel(ScheduleViewModel::class.java).apply {
+            jumpModel = BilibiliJumpModel(requireContext())
+            pushModel = PushModel(requireContext())
+        }
     }
 
     override fun initObserver() {
@@ -100,7 +88,8 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>() {
         getBinding().dayLabel.text = label
     }
 
-    override fun init() {
+    override fun onResume() {
+        super.onResume()
         scheduleViewModel.getSchedule(getBinding().refreshLayout)
     }
 

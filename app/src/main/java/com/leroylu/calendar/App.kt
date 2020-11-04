@@ -1,6 +1,7 @@
 package com.leroylu.calendar
 
 import com.alibaba.android.arouter.launcher.ARouter
+import com.leroylu.calendar.model.CalendarNotificationManager
 import com.leroylu.db.DatabaseUtil
 import com.leroylu.struct.BaseApplication
 import com.leroylu.struct.util.SharedPreferencesUtil
@@ -25,6 +26,8 @@ class App : BaseApplication() {
 
         initARouter()
         initDatabase()
+
+        CalendarNotificationManager.createNotificationChannel(this)
     }
 
     private fun initARouter() {

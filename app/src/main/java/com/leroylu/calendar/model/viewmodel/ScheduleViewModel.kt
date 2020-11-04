@@ -1,9 +1,12 @@
-package com.leroylu.calendar.model
+package com.leroylu.calendar.model.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.gson.Gson
+import com.leroylu.calendar.model.BilibiliJumpModel
+import com.leroylu.calendar.model.PushModel
 import com.leroylu.calendar.repository.ScheduleDataSource
 import com.leroylu.db.bean.calendar.CalendarItem
 import kotlinx.coroutines.launch
@@ -20,6 +23,8 @@ class ScheduleViewModel : ViewModel() {
     val currentCalendar = Calendar.getInstance()
 
     private val scheduleDataSource: ScheduleDataSource by lazy { ScheduleDataSource() }
+    lateinit var jumpModel: BilibiliJumpModel
+    lateinit var pushModel: PushModel
 
     fun getSchedule(
         refresh: SwipeRefreshLayout
@@ -40,6 +45,7 @@ class ScheduleViewModel : ViewModel() {
     fun deleteSchedule(item: CalendarItem, success: () -> Unit) {
         viewModelScope.launch {
             scheduleDataSource.deleteSchedule(item)
+            pushModel.cancelRequest(Gson().fromJson(item.notifyRequestId, UUID::class.java))
             success()
         }
     }

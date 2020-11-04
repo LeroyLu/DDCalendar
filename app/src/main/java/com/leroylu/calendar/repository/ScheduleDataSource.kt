@@ -20,11 +20,21 @@ class ScheduleDataSource {
         dao.selectAllInDay(year, month, day)
     }
 
+    suspend fun getSelectDayVid(
+        vid: Int
+    ): List<CalendarItem> = withContext(Dispatchers.IO) {
+        dao.selectAllByVid(vid)
+    }
+
     suspend fun addSchedule(calendarItem: CalendarItem) = withContext(Dispatchers.IO) {
         dao.insertAll(calendarItem)
     }
 
     suspend fun updateSchedule(calendarItem: CalendarItem) = withContext(Dispatchers.IO) {
+        dao.updateAll(calendarItem)
+    }
+
+    suspend fun updateSchedules(calendarItem: List<CalendarItem>) = withContext(Dispatchers.IO) {
         dao.updateAll(calendarItem)
     }
 

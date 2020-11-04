@@ -38,6 +38,9 @@ interface CalendarItemDao {
     @Delete
     fun delete(vararg calendarItem: CalendarItem)
 
+    @Delete
+    fun delete(items: List<CalendarItem>)
+
     @Query("DELETE FROM calendar_item")
     fun deleteAll()
 }

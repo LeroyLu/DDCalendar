@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.leroylu.calendar.model.FallowingAddViewModel" />
+            type="com.leroylu.calendar.model.viewmodel.FallowingAddViewModel" />
 
         <variable
             name="operation"
@@ -43,7 +43,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nameField"
+                android:id="@+id/uidField"
                 style="@style/TextInputLayout"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
@@ -51,6 +51,26 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/icon">
+
+                <EditText
+                    android:id="@+id/uid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="UID"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:text="@={vm.uid}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nameField"
+                style="@style/TextInputLayout"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/uidField">
 
                 <EditText
                     android:id="@+id/name"

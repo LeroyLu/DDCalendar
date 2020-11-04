@@ -10,8 +10,9 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.gson.Gson
 import com.leroylu.calendar.R
 import com.leroylu.calendar.databinding.FragmentScheduleAddBinding
-import com.leroylu.calendar.model.FallowingViewModel
-import com.leroylu.calendar.model.ScheduleAddViewModel
+import com.leroylu.calendar.model.PushModel
+import com.leroylu.calendar.model.viewmodel.FallowingViewModel
+import com.leroylu.calendar.model.viewmodel.ScheduleAddViewModel
 import com.leroylu.calendar.ui.adapter.item.VtuberItem
 import com.leroylu.calendar.ui.widget.FallowingSelectDialog
 import com.leroylu.db.bean.calendar.CalendarItem
@@ -40,8 +41,12 @@ class ScheduleAddFragment : BaseFragment<FragmentScheduleAddBinding>() {
     }
 
     override fun initViewModel() {
-        scheduleAddViewModel = getViewModel(ScheduleAddViewModel::class.java)
-        fallowingViewModel = getViewModel(FallowingViewModel::class.java)
+        scheduleAddViewModel = getViewModel(ScheduleAddViewModel::class.java).apply {
+            pushModel = PushModel(requireContext())
+        }
+        fallowingViewModel = getViewModel(FallowingViewModel::class.java).apply {
+            pushModel = PushModel(requireContext())
+        }
     }
 
     override fun bindingData(binding: FragmentScheduleAddBinding) {
@@ -88,6 +93,7 @@ class ScheduleAddFragment : BaseFragment<FragmentScheduleAddBinding>() {
             scheduleAddViewModel.vtuber.postValue(calendarItem.vtuber)
             scheduleAddViewModel.info.postValue(calendarItem.info)
             scheduleAddViewModel.isLimited.postValue(calendarItem.limited)
+            scheduleAddViewModel.pushId.postValue(calendarItem.notifyRequestId)
 
             getBinding().apply {
 
@@ -140,6 +146,7 @@ class ScheduleAddFragment : BaseFragment<FragmentScheduleAddBinding>() {
 
         fallowAdapter = PageAdapter<Vtuber>(R.layout.adapter_fallowing)
         fallowingSelectDialog = FallowingSelectDialog(requireContext())
+        lifecycle.addObserver(fallowingSelectDialog)
 
     }
 

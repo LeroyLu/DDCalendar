@@ -13,7 +13,8 @@ import com.bumptech.glide.request.transition.Transition
 import com.google.gson.Gson
 import com.leroylu.calendar.R
 import com.leroylu.calendar.databinding.FragmentFallowAddBinding
-import com.leroylu.calendar.model.FallowingAddViewModel
+import com.leroylu.calendar.model.PushModel
+import com.leroylu.calendar.model.viewmodel.FallowingAddViewModel
 import com.leroylu.db.bean.calendar.Vtuber
 import com.leroylu.struct.ui.BaseFragment
 import com.leroylu.struct.util.FileOperator
@@ -41,7 +42,9 @@ class FallowingAddFragment : BaseFragment<FragmentFallowAddBinding>() {
     }
 
     override fun initViewModel() {
-        viewModel = getViewModel(FallowingAddViewModel::class.java)
+        viewModel = getViewModel(FallowingAddViewModel::class.java).apply {
+            pushModel = PushModel(requireContext())
+        }
     }
 
     override fun bindingData(binding: FragmentFallowAddBinding) {
@@ -56,6 +59,7 @@ class FallowingAddFragment : BaseFragment<FragmentFallowAddBinding>() {
             val vtuber = Gson().fromJson(arguments?.getString("data"), Vtuber::class.java)
 
             viewModel.id.postValue(vtuber.vid)
+            viewModel.uid.postValue(vtuber.uid)
             viewModel.name.postValue(vtuber.name)
             viewModel.icon.postValue(vtuber.icon)
             viewModel.description.postValue(vtuber.description)
