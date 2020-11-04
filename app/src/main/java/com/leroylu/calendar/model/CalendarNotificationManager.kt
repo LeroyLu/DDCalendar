@@ -1,5 +1,6 @@
 package com.leroylu.calendar.model
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -48,6 +49,7 @@ class CalendarNotificationManager(
                 .setContentTitle(item.vtuber.name)
                 .setContentText(String.format("%02d:%02d %s", item.hour, item.minute, item.info))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setDefaults(Notification.DEFAULT_VIBRATE)
                 .setAutoCancel(true)
 
             if (item.vtuber.streamRoomId.isNotBlank()) {

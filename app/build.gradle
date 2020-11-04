@@ -9,7 +9,7 @@ android {
     buildToolsVersion "30.0.1"
 
     defaultConfig {
-        applicationId "com.leroylu.clander.test"
+        applicationId "com.leroylu.clander"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1

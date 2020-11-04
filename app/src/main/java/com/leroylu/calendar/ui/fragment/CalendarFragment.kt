@@ -24,7 +24,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>() {
     private val adapter = CalendarDayAdapter(
         onEdit = { edit(it) },
         onDelete = { delete(it) },
-        onBrowse = { scheduleViewModel.jumpModel.getLivePendingIntent(it.vtuber) }
+        onBrowse = { scheduleViewModel.jumpModel.jumpToLive(it.vtuber) }
     )
 
     override fun getLayoutId(): Int {
