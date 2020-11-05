@@ -3,7 +3,6 @@
     package="com.leroylu.calendar">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -12,14 +11,14 @@
         android:allowBackup="true"
         android:label="DD Calendar"
         android:supportsRtl="true"
-        android:theme="@style/CalendarTheme"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/CalendarTheme">
 
         <activity
             android:name=".ui.FallowingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CalendarTheme"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".ui.CalendarActivity"
             android:screenOrientation="portrait"
@@ -34,6 +33,7 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
     </application>
 
 </manifest>

@@ -65,10 +65,12 @@ class ScheduleAddViewModel : ViewModel() {
         if (item.notifyRequestId.isNotBlank()) {
             pushModel.cancelRequest(gson.fromJson(item.notifyRequestId, UUID::class.java))
         }
-        val request = pushModel.build(item).apply {
-            item.notifyRequestId = gson.toJson(id)
+        if (dateAndTime.time.time > System.currentTimeMillis()) {
+            val request = pushModel.build(item).apply {
+                item.notifyRequestId = gson.toJson(id)
+            }
+            pushModel.sendRequest(request)
         }
-        pushModel.sendRequest(request)
 
         viewModelScope.launch {
             if (item.id == 0) {

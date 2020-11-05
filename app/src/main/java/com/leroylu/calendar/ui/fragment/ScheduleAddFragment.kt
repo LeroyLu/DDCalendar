@@ -19,7 +19,6 @@ import com.leroylu.db.bean.calendar.CalendarItem
 import com.leroylu.db.bean.calendar.Vtuber
 import com.leroylu.struct.ui.BaseFragment
 import com.leroylu.struct.ui.adapter.PageAdapter
-import com.leroylu.struct.util.ToastUtil
 import java.util.*
 
 class ScheduleAddFragment : BaseFragment<FragmentScheduleAddBinding>() {
@@ -64,10 +63,6 @@ class ScheduleAddFragment : BaseFragment<FragmentScheduleAddBinding>() {
                             onSelect = { v ->
                                 fallowingSelectDialog.hide()
                                 scheduleAddViewModel.vtuber.postValue(v)
-                            }
-                            onEdit = { v ->
-                                ToastUtil.show("aaaaa")
-
                             }
                         }
                     })
