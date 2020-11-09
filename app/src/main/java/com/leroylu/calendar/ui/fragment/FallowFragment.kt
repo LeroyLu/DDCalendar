@@ -1,7 +1,6 @@
 package com.leroylu.calendar.ui.fragment
 
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -47,6 +46,10 @@ class FallowFragment : BaseFragment<FragmentFallowBinding>() {
         return R.layout.fragment_fallow
     }
 
+    override fun bindingData(binding: FragmentFallowBinding) {
+        binding.operation = Operation()
+    }
+
     override fun initViewModel() {
         fallowViewModel = getActivityViewModel(FallowingViewModel::class.java).apply {
             jumpModel = BilibiliJumpModel(requireContext())
@@ -57,7 +60,7 @@ class FallowFragment : BaseFragment<FragmentFallowBinding>() {
     override fun initView() {
         getBinding().apply {
 
-            toolbar.onActionClick(View.OnClickListener { findNavController().navigate(R.id.addFallowing) })
+            toolbar.onActionClick { }
 
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -91,5 +94,12 @@ class FallowFragment : BaseFragment<FragmentFallowBinding>() {
                     })
                 }
             })
+    }
+
+    inner class Operation {
+
+        fun add() {
+            findNavController().navigate(R.id.addFallowing)
+        }
     }
 }

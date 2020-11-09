@@ -83,6 +83,7 @@ class CustomToolBar : LinearLayout {
         array.getDimension(R.styleable.CustomToolBar_ctbTitleSize, 17f).let {
             title.textSize = it
         }
+        //action icon
         array.getResourceId(R.styleable.CustomToolBar_ctbActionIcon, -1).let {
             if (it != -1) {
                 action.setImageResource(it)
@@ -90,6 +91,10 @@ class CustomToolBar : LinearLayout {
             } else {
                 action.isVisible = false
             }
+        }
+
+        array.getBoolean(R.styleable.CustomToolBar_ctbActionIconHide, false).let {
+            action.isVisible = !it
         }
 
         array.recycle()

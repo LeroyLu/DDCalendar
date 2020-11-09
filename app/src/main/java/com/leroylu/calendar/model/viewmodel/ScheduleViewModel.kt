@@ -45,7 +45,12 @@ class ScheduleViewModel : ViewModel() {
     fun deleteSchedule(item: CalendarItem, success: () -> Unit) {
         viewModelScope.launch {
             scheduleDataSource.deleteSchedule(item)
-            pushModel.cancelRequest(Gson().fromJson(item.notifyRequestId, UUID::class.java))
+            var uuid: UUID? = null
+            try {
+                uuid = Gson().fromJson(item.notifyRequestId, UUID::class.java)
+            } catch (ignore: Exception) {
+            }
+            uuid?.let { pushModel.cancelRequest(it) }
             success()
         }
     }

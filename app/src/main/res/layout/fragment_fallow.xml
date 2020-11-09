@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="operation"
+            type="com.leroylu.calendar.ui.fragment.FallowFragment.Operation" />
     </data>
 
     <LinearLayout
@@ -17,21 +20,39 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:ctbActionIcon="@drawable/add"
             app:ctbBackground="@color/Pink300"
+            app:ctbActionIconHide="true"
             app:ctbTitle="关注" />
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refreshLayout"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refreshLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:onClick="@{()->operation.add()}"
+                app:backgroundTint="@color/white"
+                app:elevation="10dp"
+                app:layout_anchor="@id/refreshLayout"
+                app:layout_anchorGravity="bottom|end"
+                app:layout_behavior="com.leroylu.struct.ui.behavior.FabScrollBehavior"
+                app:srcCompat="@drawable/add" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </LinearLayout>
 

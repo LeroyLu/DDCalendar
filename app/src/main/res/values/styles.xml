@@ -25,6 +25,7 @@
         <attr name="ctbTitleColor" format="color" />
         <attr name="ctbTitleSize" format="dimension" />
         <attr name="ctbActionIcon" format="reference" />
+        <attr name="ctbActionIconHide" format="boolean" />
     </declare-styleable>
 
     <style name="CalendarTheme.NoActionBar">
