@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit
  */
 class PushModel(private val ctx: Context) {
 
+    private val gson = Gson()
+
     fun build(item: CalendarItem): OneTimeWorkRequest {
 
         val target = Calendar.getInstance().apply {
@@ -32,8 +34,14 @@ class PushModel(private val ctx: Context) {
             .build()
     }
 
-    fun cancelRequest(id: UUID) {
-        WorkManager.getInstance(ctx).cancelWorkById(id)
+    fun cancelRequest(id: String) {
+        var uuid: UUID? = null
+        try {
+            uuid = gson.fromJson(id, UUID::class.java)
+        } catch (ignore: Exception) {
+
+        }
+        uuid?.let { WorkManager.getInstance(ctx).cancelWorkById(it) }
     }
 
     fun sendRequest(request: OneTimeWorkRequest) {

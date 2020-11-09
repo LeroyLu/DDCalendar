@@ -79,7 +79,7 @@ class FallowingAddViewModel : ViewModel() {
                 }.time.time
 
                 if (System.currentTimeMillis() < itemTime) {
-                    pushModel.cancelRequest(gson.fromJson(it.notifyRequestId, UUID::class.java))
+                    pushModel.cancelRequest(it.notifyRequestId)
                     val request = pushModel.build(it)
                     it.notifyRequestId = gson.toJson(request.id)
                     pushModel.sendRequest(request)

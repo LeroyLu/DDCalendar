@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.gson.Gson
 import com.leroylu.calendar.model.BilibiliJumpModel
 import com.leroylu.calendar.model.PushModel
 import com.leroylu.calendar.repository.ScheduleDataSource
@@ -45,12 +44,7 @@ class ScheduleViewModel : ViewModel() {
     fun deleteSchedule(item: CalendarItem, success: () -> Unit) {
         viewModelScope.launch {
             scheduleDataSource.deleteSchedule(item)
-            var uuid: UUID? = null
-            try {
-                uuid = Gson().fromJson(item.notifyRequestId, UUID::class.java)
-            } catch (ignore: Exception) {
-            }
-            uuid?.let { pushModel.cancelRequest(it) }
+            pushModel.cancelRequest(item.notifyRequestId)
             success()
         }
     }

@@ -1,13 +1,11 @@
 package com.leroylu.calendar.repository
 
 import androidx.paging.PagingSource
-import com.google.gson.Gson
 import com.leroylu.calendar.model.PushModel
 import com.leroylu.db.DatabaseUtil
 import com.leroylu.db.bean.calendar.Vtuber
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.util.*
 
 /**
  * @author jiaj.lu
@@ -45,9 +43,8 @@ class FallowingDataSource {
         withContext(Dispatchers.IO) {
             vtuberDao.delete(v)
             val items = calendarDao.selectAllByVid(v.vid).apply {
-                val gson = Gson()
                 forEach {
-                    pushModel.cancelRequest(gson.fromJson(it.notifyRequestId, UUID::class.java))
+                    pushModel.cancelRequest(it.notifyRequestId)
                 }
             }
             calendarDao.delete(items)
